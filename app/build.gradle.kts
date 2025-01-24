@@ -54,8 +54,9 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter)
-
+    implementation(libs.coil.compose)
     implementation(libs.hilt.android)
+    implementation(libs.androidx.hilt.navigation.compose)
     kapt(libs.hilt.android.compiler)
 
     testImplementation(libs.junit)
