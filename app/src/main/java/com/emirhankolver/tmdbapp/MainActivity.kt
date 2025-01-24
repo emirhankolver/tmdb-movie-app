@@ -15,7 +15,10 @@ import androidx.navigation.NavGraph
 import androidx.navigation.compose.rememberNavController
 import com.emirhankolver.tmdbapp.ui.navigation.AppNavHost
 import com.emirhankolver.tmdbapp.ui.theme.TMDbAppTheme
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.HiltAndroidApp
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
