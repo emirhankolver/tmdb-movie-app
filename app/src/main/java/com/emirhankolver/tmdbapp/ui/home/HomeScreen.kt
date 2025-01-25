@@ -4,18 +4,20 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import com.emirhankolver.tmdbapp.data.UiState
 import com.emirhankolver.tmdbapp.ui.home.components.HomeTopSliderView
+import com.emirhankolver.tmdbapp.ui.home.components.MovieDetailList
 
 @Composable
 fun HomeScreen(navHostController: NavHostController) {
     val viewModel: HomeViewModel = hiltViewModel()
     val sliderState = viewModel.upcomingList.collectAsState()
+    val nowPlayingState = viewModel.nowPlayingList.collectAsState()
 
     Scaffold {
         Column(
@@ -23,8 +25,9 @@ fun HomeScreen(navHostController: NavHostController) {
                 .padding(it)
                 .fillMaxSize()
         ) {
-            HomeTopSliderView(state = sliderState.value)
-            Text(text = "Home Screen")
+            MovieDetailList(state = UiState.Loading) {
+                HomeTopSliderView(state = sliderState.value)
+            }
         }
     }
 }

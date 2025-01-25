@@ -21,8 +21,12 @@ class HomeViewModel @Inject constructor(
     private val _upcomingList = MutableStateFlow<UiState<List<MovieDetail?>>>(UiState.Loading)
     val upcomingList: StateFlow<UiState<List<MovieDetail?>>> = _upcomingList
 
+    private val _nowPlayingList = MutableStateFlow<UiState<List<MovieDetail?>>>(UiState.Loading)
+    val nowPlayingList: StateFlow<UiState<List<MovieDetail?>>> = _nowPlayingList
+
     init {
-        loadUpcomingList();
+        loadUpcomingList()
+        loadNowPlayingList()
     }
 
     private fun loadUpcomingList() = viewModelScope.launch(Dispatchers.IO) {
@@ -32,6 +36,16 @@ class HomeViewModel @Inject constructor(
             _upcomingList.emit(UiState.Success(movies.results ?: emptyList()))
         } catch (t:Throwable) {
             _upcomingList.emit(UiState.Error(t.message ?: "Unknown Error"))
+        }
+    }
+
+    private fun loadNowPlayingList() = viewModelScope.launch(Dispatchers.IO) {
+        try {
+            val movies = useCase.getNowPlaying()
+            delay(1000)
+            _nowPlayingList.emit(UiState.Success(movies.results ?: emptyList()))
+        } catch (t:Throwable) {
+            _nowPlayingList.emit(UiState.Error(t.message ?: "Unknown Error"))
         }
     }
 }
