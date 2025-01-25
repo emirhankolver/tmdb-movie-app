@@ -9,7 +9,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import com.emirhankolver.tmdbapp.data.UiState
 import com.emirhankolver.tmdbapp.ui.home.components.HomeTopSliderView
 import com.emirhankolver.tmdbapp.ui.home.components.MovieDetailList
 
@@ -25,7 +24,7 @@ fun HomeScreen(navHostController: NavHostController) {
                 .padding(it)
                 .fillMaxSize()
         ) {
-            MovieDetailList(state = UiState.Loading) {
+            MovieDetailList(state = nowPlayingState.value) {
                 HomeTopSliderView(state = sliderState.value)
             }
         }

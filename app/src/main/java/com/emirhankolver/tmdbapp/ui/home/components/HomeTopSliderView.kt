@@ -12,7 +12,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Clear
+import androidx.compose.material.icons.rounded.Warning
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardColors
 import androidx.compose.material3.CircularProgressIndicator
@@ -61,7 +61,7 @@ fun HomeTopSliderView(
                     ) {
                         Icon(
                             modifier = Modifier.size(36.dp),
-                            imageVector = Icons.Rounded.Clear,
+                            imageVector = Icons.Rounded.Warning,
                             contentDescription = "Error Icon",
                         )
                         Text("Unable to load upcoming List.")
