@@ -2,6 +2,7 @@ package com.emirhankolver.tmdbapp.ui.home.components
 
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,7 +10,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -28,12 +28,14 @@ import com.emirhankolver.tmdbapp.data.MovieDetail
 @Composable
 fun SliderItemView(
     screenWidth: Int,
-    movieDetail: MovieDetail?
+    movieDetail: MovieDetail?,
+    onClickItem: (MovieDetail?) -> Unit,
 ) {
     Box(
         modifier = Modifier
             .width(screenWidth.dp)
             .height(200.dp)
+            .clickable { onClickItem(movieDetail) },
     ) {
         AsyncImage(
             modifier = Modifier.fillMaxSize(),
@@ -61,14 +63,14 @@ fun SliderItemView(
         ) {
             Text(
                 text = "${movieDetail?.title} (${movieDetail?.releaseDate?.substring(0, 4)})",
-                color = MaterialTheme.colorScheme.surface,
+                color = Color.White,
                 modifier = Modifier.fillMaxWidth(),
                 textAlign = TextAlign.Center,
                 fontSize = 16.sp,
             )
             Text(
-                text = "Overview of the movie should be single line and centered veand centered ve",
-                color = MaterialTheme.colorScheme.surface,
+                text = "${movieDetail?.overview}",
+                color = Color.White,
                 fontSize = 12.sp,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis

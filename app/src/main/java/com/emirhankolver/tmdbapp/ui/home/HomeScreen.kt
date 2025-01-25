@@ -9,8 +9,12 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import com.emirhankolver.tmdbapp.data.MovieDetail
 import com.emirhankolver.tmdbapp.ui.home.components.HomeTopSliderView
 import com.emirhankolver.tmdbapp.ui.home.components.MovieDetailList
+import com.emirhankolver.tmdbapp.ui.navigation.Routes
+import com.google.gson.Gson
+import java.net.URLEncoder
 
 @Composable
 fun HomeScreen(navHostController: NavHostController) {
@@ -24,9 +28,28 @@ fun HomeScreen(navHostController: NavHostController) {
                 .padding(it)
                 .fillMaxSize()
         ) {
-            MovieDetailList(state = nowPlayingState.value) {
-                HomeTopSliderView(state = sliderState.value)
+            MovieDetailList(
+                state = nowPlayingState.value,
+                onClickItem = { detail ->
+                    navigateToDetails(navHostController, detail)
+                },
+            ) {
+                HomeTopSliderView(
+                    state = sliderState.value,
+                    onClickItem = { detail ->
+                        navigateToDetails(navHostController, detail)
+                    },
+                )
             }
         }
     }
+}
+
+fun navigateToDetails(navHostController: NavHostController, detail: MovieDetail?) {
+    navHostController.navigate(
+        Routes.Detail.route.replace(
+            "{item}",
+            URLEncoder.encode(Gson().toJson(detail)),
+        )
+    )
 }

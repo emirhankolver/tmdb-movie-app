@@ -32,6 +32,7 @@ import com.emirhankolver.tmdbapp.data.UiState
 @Composable
 fun HomeTopSliderView(
     state: UiState<List<MovieDetail?>>,
+    onClickItem: (MovieDetail?) -> Unit,
 ) {
     val screenWidth = LocalConfiguration.current.screenWidthDp
     val listState = rememberLazyListState()
@@ -92,7 +93,8 @@ fun HomeTopSliderView(
                         items(state.data.size) {
                             SliderItemView(
                                 screenWidth = screenWidth,
-                                movieDetail = state.data[it]
+                                movieDetail = state.data[it],
+                                onClickItem = onClickItem,
                             )
                         }
                     }

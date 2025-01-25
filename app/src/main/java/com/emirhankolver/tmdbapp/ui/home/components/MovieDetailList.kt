@@ -23,7 +23,11 @@ import com.emirhankolver.tmdbapp.data.UiState
 import com.emirhankolver.tmdbapp.ui.components.MovieDetailView
 
 @Composable
-fun MovieDetailList(state: UiState<List<MovieDetail?>>, header: @Composable (() -> Unit)?) {
+fun MovieDetailList(
+    state: UiState<List<MovieDetail?>>,
+    onClickItem: (MovieDetail?) -> Unit,
+    header: @Composable (() -> Unit)?,
+) {
     when (state) {
         is UiState.Error -> Column {
             header?.invoke()
@@ -70,7 +74,7 @@ fun MovieDetailList(state: UiState<List<MovieDetail?>>, header: @Composable (() 
                 items(state.data.size) {
                     if (it == 0) header?.invoke()
                     if (it == 0) Box(Modifier.height(8.dp))
-                    MovieDetailView(movieDetail = state.data[it])
+                    MovieDetailView(movieDetail = state.data[it], onClickItem)
                 }
             }
         }
