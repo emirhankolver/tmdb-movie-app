@@ -82,7 +82,9 @@ fun HomeTopSliderView(
             }
 
             is UiState.Success -> {
-                Box {
+                Box(
+                    contentAlignment = Alignment.BottomCenter
+                ) {
                     LazyRow(
                         state = listState,
                         flingBehavior = rememberSnapFlingBehavior(lazyListState = listState)
@@ -94,6 +96,7 @@ fun HomeTopSliderView(
                             )
                         }
                     }
+                    DotIndicator(listState)
                 }
             }
         }
