@@ -117,7 +117,9 @@ fun DetailScreen(
                     )
                 }
                 item {
-                    DetailSummaryText(state.value)
+                    DetailSummaryText(state.value) {
+                        viewModel.loadMovieDetails(movieDetail?.id)
+                    }
                 }
             }
             Button(

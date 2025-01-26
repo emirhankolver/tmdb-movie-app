@@ -18,10 +18,10 @@ import com.emirhankolver.tmdbapp.ui.components.ErrorCard
 import com.valentinilk.shimmer.shimmer
 
 @Composable
-fun DetailSummaryText(state: UiState<MovieDetail?>) {
+fun DetailSummaryText(state: UiState<MovieDetail?>, onTapRetry: (() -> Unit)) {
     when (state) {
         is UiState.Error -> {
-            ErrorCard(subtitle = state.message)
+            ErrorCard(subtitle = state.message, onTapRetry = onTapRetry)
         }
 
         is UiState.Loading -> {

@@ -7,7 +7,6 @@ import com.emirhankolver.tmdbapp.data.UiState
 import com.emirhankolver.tmdbapp.domain.MovieUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -25,10 +24,10 @@ class PopularsViewModel @Inject constructor(
         loadPopularsList()
     }
 
-    private fun loadPopularsList() = viewModelScope.launch(Dispatchers.IO) {
+    fun loadPopularsList() = viewModelScope.launch(Dispatchers.IO) {
         try {
+            _popularsList.emit(UiState.Loading)
             val movies = useCase.getMoviePopular()
-            delay(1000)
             _popularsList.emit(UiState.Success(movies.results ?: emptyList()))
         } catch (t: Throwable) {
             _popularsList.emit(UiState.Error(t.message ?: "Unknown Error"))

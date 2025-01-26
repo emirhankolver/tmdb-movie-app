@@ -7,7 +7,6 @@ import com.emirhankolver.tmdbapp.data.UiState
 import com.emirhankolver.tmdbapp.domain.MovieUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -29,20 +28,20 @@ class HomeViewModel @Inject constructor(
         loadNowPlayingList()
     }
 
-    private fun loadUpcomingList() = viewModelScope.launch(Dispatchers.IO) {
+    fun loadUpcomingList() = viewModelScope.launch(Dispatchers.IO) {
         try {
+            _upcomingList.emit(UiState.Loading)
             val movies = useCase.getUpcomingMovies()
-            delay(1000)
             _upcomingList.emit(UiState.Success(movies.results ?: emptyList()))
         } catch (t:Throwable) {
             _upcomingList.emit(UiState.Error(t.message ?: "Unknown Error"))
         }
     }
 
-    private fun loadNowPlayingList() = viewModelScope.launch(Dispatchers.IO) {
+    fun loadNowPlayingList() = viewModelScope.launch(Dispatchers.IO) {
         try {
+            _nowPlayingList.emit(UiState.Loading)
             val movies = useCase.getNowPlaying()
-            delay(1000)
             _nowPlayingList.emit(UiState.Success(movies.results ?: emptyList()))
         } catch (t:Throwable) {
             _nowPlayingList.emit(UiState.Error(t.message ?: "Unknown Error"))

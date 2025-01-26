@@ -30,12 +30,14 @@ fun HomeScreen(navHostController: NavHostController) {
         ) {
             MovieDetailList(
                 state = nowPlayingState.value,
+                onTapRetry = { viewModel.loadNowPlayingList() },
                 onClickItem = { detail ->
                     navigateToDetails(navHostController, detail)
                 },
             ) {
                 HomeTopSliderView(
                     state = sliderState.value,
+                    onTapRetry = { viewModel.loadUpcomingList() },
                     onClickItem = { detail ->
                         navigateToDetails(navHostController, detail)
                     },

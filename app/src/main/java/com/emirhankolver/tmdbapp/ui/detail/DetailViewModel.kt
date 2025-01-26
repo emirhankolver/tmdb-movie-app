@@ -27,6 +27,7 @@ class DetailViewModel @Inject constructor(
             return@launch
         }
         try {
+            _movieDetail.emit(UiState.Loading)
             val response = useCase.getMovieDetail(id)
             _movieDetail.emit(UiState.Success(response))
         } catch (t: Throwable) {
