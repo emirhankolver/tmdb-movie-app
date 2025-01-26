@@ -24,50 +24,50 @@ import com.emirhankolver.tmdbapp.ui.components.ErrorCard
 fun HomeTopSliderView(
     state: UiState<List<MovieDetail?>>,
     onClickItem: (MovieDetail?) -> Unit,
+    onTapRetry: () -> Unit
 ) {
     val screenWidth = LocalConfiguration.current.screenWidthDp
     val listState = rememberLazyListState()
 
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(200.dp)
-    ) {
-        when (state) {
-            is UiState.Error -> {
-                ErrorCard(state.message)
-            }
 
-            is UiState.Loading -> {
-                Card(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(16.dp)
-                ) {
-                    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                        CircularProgressIndicator()
-                    }
+    when (state) {
+        is UiState.Error -> {
+            ErrorCard(state.message, onTapRetry = onTapRetry)
+        }
+
+        is UiState.Loading -> {
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+                    .height(200.dp)
+            ) {
+                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                    CircularProgressIndicator()
                 }
             }
+        }
 
-            is UiState.Success -> {
-                Box(
-                    contentAlignment = Alignment.BottomCenter
+        is UiState.Success -> {
+            Box(
+                contentAlignment = Alignment.BottomCenter,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(200.dp)
+            ) {
+                LazyRow(
+                    state = listState,
+                    flingBehavior = rememberSnapFlingBehavior(lazyListState = listState)
                 ) {
-                    LazyRow(
-                        state = listState,
-                        flingBehavior = rememberSnapFlingBehavior(lazyListState = listState)
-                    ) {
-                        items(state.data.size) {
-                            SliderItemView(
-                                screenWidth = screenWidth,
-                                movieDetail = state.data[it],
-                                onClickItem = onClickItem,
-                            )
-                        }
+                    items(state.data.size) {
+                        SliderItemView(
+                            screenWidth = screenWidth,
+                            movieDetail = state.data[it],
+                            onClickItem = onClickItem,
+                        )
                     }
-                    DotIndicator(listState)
                 }
+                DotIndicator(listState)
             }
         }
     }

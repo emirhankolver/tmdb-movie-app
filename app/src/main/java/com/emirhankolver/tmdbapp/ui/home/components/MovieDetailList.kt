@@ -16,12 +16,13 @@ import com.emirhankolver.tmdbapp.ui.components.MovieDetailView
 fun MovieDetailList(
     state: UiState<List<MovieDetail?>>,
     onClickItem: (MovieDetail?) -> Unit,
+    onTapRetry: () -> Unit,
     header: @Composable (() -> Unit)?,
 ) {
     when (state) {
         is UiState.Error -> Column {
             header?.invoke()
-            ErrorCard()
+            ErrorCard(subtitle = state.message, onTapRetry = onTapRetry)
         }
 
         is UiState.Loading -> {

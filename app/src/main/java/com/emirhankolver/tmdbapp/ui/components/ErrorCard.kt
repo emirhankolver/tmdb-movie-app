@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Warning
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardColors
 import androidx.compose.material3.Icon
@@ -19,7 +20,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun ErrorCard(title: String? = null, subtitle: String? = null) {
+fun ErrorCard(subtitle: String? = null, onTapRetry: (() -> Unit)) {
     Card(
         Modifier
             .fillMaxWidth()
@@ -43,14 +44,20 @@ fun ErrorCard(title: String? = null, subtitle: String? = null) {
                 contentDescription = "Error Icon",
             )
             Text(
-                title ?: "Something Went Wrong",
+                "Something Went Wrong",
                 style = MaterialTheme.typography.titleMedium,
-            )
-            Text(
-                subtitle ?: "An unexpected error occurred. Please try again later.",
                 textAlign = TextAlign.Center,
                 overflow = TextOverflow.Ellipsis
             )
+            Text(
+                subtitle ?: "An unexpected error occurred. Please try again later.",
+                style = MaterialTheme.typography.bodySmall,
+                textAlign = TextAlign.Center,
+                overflow = TextOverflow.Ellipsis,
+            )
+            Button(onTapRetry) {
+                Text("Retry")
+            }
         }
     }
 }

@@ -51,7 +51,9 @@ fun PopularsScreen(navHostController: NavHostController) {
         Box(Modifier.padding(initialPadding)) {
             when (state) {
                 is UiState.Error -> {
-                    ErrorCard(subtitle = state.message)
+                    ErrorCard(subtitle = state.message) {
+                        viewModel.loadPopularsList()
+                    }
                 }
 
                 is UiState.Loading -> {
