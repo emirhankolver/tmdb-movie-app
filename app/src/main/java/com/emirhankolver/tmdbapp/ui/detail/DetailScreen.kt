@@ -34,6 +34,7 @@ import com.emirhankolver.tmdbapp.R
 import com.emirhankolver.tmdbapp.common.AppConstants
 import com.emirhankolver.tmdbapp.data.MovieDetail
 import com.emirhankolver.tmdbapp.ui.detail.components.DetailSummaryText
+import com.emirhankolver.tmdbapp.utils.DateUtils
 
 @Composable
 fun DetailScreen(
@@ -66,7 +67,7 @@ fun DetailScreen(
                     IconButton(onClick = { navHostController.navigateUp() }) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = "Localized description",
+                            contentDescription = null,
                             tint = Color.White,
                         )
                     }
@@ -79,7 +80,10 @@ fun DetailScreen(
                         contentDescription = null,
                         tint = Color(0xFFF9C712),
                     )
-                    Text("${movieDetail?.voteAverage}", fontWeight = FontWeight.Medium)
+                    Text(
+                        "${movieDetail?.voteAverage}".substring(0, 3),
+                        fontWeight = FontWeight.Medium
+                    )
                     Text(
                         "/10",
                         fontWeight = FontWeight.Medium,
@@ -91,7 +95,10 @@ fun DetailScreen(
                             .size(4.dp)
                             .background(Color(0xFFF9C712))
                     )
-                    Text("${movieDetail?.releaseDate}", fontWeight = FontWeight.Medium)
+                    Text(
+                        DateUtils.formatToLocalDate(movieDetail?.releaseDate),
+                        fontWeight = FontWeight.Medium
+                    )
                 }
             }
             item {
