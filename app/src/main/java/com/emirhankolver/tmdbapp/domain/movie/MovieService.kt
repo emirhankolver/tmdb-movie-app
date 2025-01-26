@@ -14,7 +14,7 @@ interface MovieService {
     @GET("movie/now_playing")
     suspend fun getNowPlaying(): GetUpComingResponse
 
-    @GET("movie/:id")
+    @GET("movie/{id}")
     suspend fun getMovieDetail(@Path("id") id: Int): MovieDetail
 
     @GET("movie/popular")
