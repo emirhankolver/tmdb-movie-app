@@ -9,6 +9,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import androidx.paging.compose.collectAsLazyPagingItems
 import com.emirhankolver.tmdbapp.data.MovieDetail
 import com.emirhankolver.tmdbapp.ui.home.components.HomeTopSliderView
 import com.emirhankolver.tmdbapp.ui.home.components.MovieDetailList
@@ -17,10 +18,10 @@ import com.google.gson.Gson
 import java.net.URLEncoder
 
 @Composable
-fun HomeScreen(navHostController: NavHostController) {
-    val viewModel: HomeViewModel = hiltViewModel()
+fun HomeScreen(navHostController: NavHostController, viewModel: HomeViewModel = hiltViewModel()) {
+
     val sliderState = viewModel.upcomingList.collectAsState()
-    val nowPlayingState = viewModel.nowPlayingList.collectAsState()
+    val nowPlayingState = viewModel.nowPlayingFlow.collectAsLazyPagingItems()
 
     Scaffold {
         Column(
@@ -29,8 +30,7 @@ fun HomeScreen(navHostController: NavHostController) {
                 .fillMaxSize()
         ) {
             MovieDetailList(
-                state = nowPlayingState.value,
-                onTapRetry = { viewModel.loadNowPlayingList() },
+                state = nowPlayingState,
                 onClickItem = { detail ->
                     navigateToDetails(navHostController, detail)
                 },

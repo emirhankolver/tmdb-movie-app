@@ -13,6 +13,7 @@ activityCompose = "1.10.0"
 composeBom = "2024.04.01"
 navigationCompose = "2.8.5"
 daggerHilt = "2.51.1"
+pagingCompose = "3.3.5"
 retrofit = "2.11.0"
 
 [libraries]
@@ -38,6 +39,9 @@ hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "dagge
 hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "daggerHilt" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 retrofit-converter = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
+androidx-paging-runtime-ktx = { module = "androidx.paging:paging-runtime-ktx", version.ref = "pagingCompose" }
+androidx-paging-runtime = { module = "androidx.paging:paging-runtime", version.ref = "pagingCompose" }
+paging-compose = { module = "androidx.paging:paging-compose", version.ref = "pagingCompose" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

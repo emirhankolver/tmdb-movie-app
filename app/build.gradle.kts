@@ -63,6 +63,11 @@ dependencies {
     implementation(libs.androidx.hilt.navigation.compose)
     kapt(libs.hilt.android.compiler)
 
+    // Pagination
+    implementation(libs.paging.compose)
+    implementation(libs.androidx.paging.runtime)
+    implementation(libs.androidx.paging.runtime.ktx)
+
     // Etc.
     implementation(libs.compose.shimmer)
 
