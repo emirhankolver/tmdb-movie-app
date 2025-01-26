@@ -1,5 +1,11 @@
 # Mobillium Android Challenge
 
+## **Hello Mobillium Team!** 👋  
+I’m excited to share the release of the movie app I’ve prepared for you! 🚀 The app includes a variety of features and best practices, and I’ve included a feature summary and screenshots for your convenience.  
+
+**Check it out here!** 👇  
+__[Release v1.0.0](https://github.com/mobillium-android/EmirhanKolver/releases/tag/1.0.0)__
+
 ## [Introduction](#introduction)
 In this challenge, you will develop a simple movie application using TMDb API, taking into consideration our specified requirements.
 
