@@ -1,6 +1,7 @@
 package com.emirhankolver.tmdbapp.ui.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -27,6 +28,7 @@ import com.emirhankolver.tmdbapp.data.MovieDetail
 @Composable
 fun MovieDetailView(
     movieDetail: MovieDetail?,
+    onClickItem: (MovieDetail?) -> Unit,
 ) {
     Card(
         modifier = Modifier
@@ -35,6 +37,7 @@ fun MovieDetailView(
                 horizontal = 16.dp,
                 vertical = 8.dp
             )
+            .clickable { onClickItem(movieDetail) }
     ) {
         Row {
             AsyncImage(
