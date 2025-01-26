@@ -2,9 +2,7 @@ package com.emirhankolver.tmdbapp.ui.home.components
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -27,8 +25,10 @@ fun MovieDetailList(
             Box(Modifier.height(8.dp))
         }
 
-        items(state.itemCount) {
-            MovieDetailView(movieDetail = state[it], onClickItem)
+        if (state.loadState.refresh is LoadState.NotLoading) {
+            items(state.itemCount) {
+                MovieDetailView(movieDetail = state[it], onClickItem)
+            }
         }
 
         // Handle Loading State
@@ -36,7 +36,9 @@ fun MovieDetailList(
             loadState.append.let { appendState ->
                 when (appendState) {
                     is LoadState.Loading -> {
-                        item { CircularProgressIndicator(modifier = Modifier.padding(16.dp)) }
+                        items(10) {
+                            MovieDetailPlaceHolder()
+                        }
                     }
 
                     is LoadState.Error -> {

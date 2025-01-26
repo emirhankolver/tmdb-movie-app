@@ -70,6 +70,7 @@ dependencies {
 
     // Etc.
     implementation(libs.compose.shimmer)
+    implementation(libs.androidx.material)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

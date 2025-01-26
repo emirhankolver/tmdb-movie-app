@@ -25,7 +25,7 @@ fun MovieDetailPlaceHolder() {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .height(170.dp)
+            .height(128.dp)
             .shimmer()
             .padding(
                 horizontal = 16.dp,
@@ -35,8 +35,8 @@ fun MovieDetailPlaceHolder() {
         Row {
             Box(
                 modifier = Modifier
-                    .width(170.dp)
-                    .height(170.dp)
+                    .width(128.dp)
+                    .height(128.dp)
                     .clip(RoundedCornerShape(6.dp))
                     .background(color)
             )

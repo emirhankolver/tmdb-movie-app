@@ -8,6 +8,7 @@ import com.emirhankolver.tmdbapp.data.UiState
 import com.emirhankolver.tmdbapp.domain.MovieUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -20,6 +21,9 @@ class HomeViewModel @Inject constructor(
 
     private val _upcomingList = MutableStateFlow<UiState<List<MovieDetail?>>>(UiState.Loading)
     val upcomingList: StateFlow<UiState<List<MovieDetail?>>> = _upcomingList
+
+    private val _isRefreshing = MutableStateFlow(false)
+    val isRefreshing: StateFlow<Boolean> = _isRefreshing
 
     val nowPlayingFlow = useCase.getNowPlayingPagingFlow().cachedIn(viewModelScope)
 
@@ -35,5 +39,12 @@ class HomeViewModel @Inject constructor(
         } catch (t:Throwable) {
             _upcomingList.emit(UiState.Error(t.message ?: "Unknown Error"))
         }
+    }
+
+    fun refresh() = viewModelScope.launch(Dispatchers.IO) {
+        _isRefreshing.emit(true)
+        loadUpcomingList()
+        delay(1000)
+        _isRefreshing.emit(false)
     }
 }
