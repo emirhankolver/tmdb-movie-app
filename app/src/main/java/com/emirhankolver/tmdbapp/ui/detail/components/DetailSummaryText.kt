@@ -47,10 +47,13 @@ fun DetailSummaryText(state: UiState<MovieDetail?>) {
         }
 
         is UiState.Success -> {
-            Text(
-                state.data?.overview ?: "-",
-                modifier = Modifier.padding(16.dp)
-            )
+            repeat(10) {
+                Text(
+                    state.data?.overview ?: "-",
+                    modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 4.dp),
+                    style = MaterialTheme.typography.bodySmall
+                )
+            }
         }
     }
 }
