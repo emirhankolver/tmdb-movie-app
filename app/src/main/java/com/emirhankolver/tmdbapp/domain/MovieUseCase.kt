@@ -1,11 +1,13 @@
 package com.emirhankolver.tmdbapp.domain
 
+import androidx.paging.PagingData
 import com.emirhankolver.tmdbapp.data.GetPopularMoviesResponse
 import com.emirhankolver.tmdbapp.data.GetUpComingResponse
 import com.emirhankolver.tmdbapp.data.MovieDetail
 import com.emirhankolver.tmdbapp.domain.movie.MovieRepository
 import com.emirhankolver.tmdbapp.domain.movie.MovieService
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class MovieUseCase @Inject constructor(
@@ -17,9 +19,9 @@ class MovieUseCase @Inject constructor(
         return repository.getUpcomingMovies();
     }
 
-    override suspend fun getNowPlaying(): GetUpComingResponse {
+    override suspend fun getNowPlaying(page: Int): GetUpComingResponse {
         delay(1000)
-        return repository.getNowPlaying();
+        return repository.getNowPlaying(page);
     }
 
     override suspend fun getMovieDetail(id: Int): MovieDetail {
@@ -30,5 +32,9 @@ class MovieUseCase @Inject constructor(
     override suspend fun getMoviePopular(): GetPopularMoviesResponse {
         delay(1000)
         return repository.getMoviePopular()
+    }
+
+    override fun getNowPlayingPagingFlow(): Flow<PagingData<MovieDetail>> {
+        return repository.getNowPlayingPagingFlow()
     }
 }

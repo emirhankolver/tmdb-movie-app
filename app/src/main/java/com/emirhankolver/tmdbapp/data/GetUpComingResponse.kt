@@ -9,7 +9,7 @@ data class GetUpComingResponse(
     @SerializedName("page")
     val page: Int?,
     @SerializedName("results")
-    val results: List<MovieDetail?>?,
+    val results: List<MovieDetail>?,
     @SerializedName("total_pages")
     val totalPages: Int?,
     @SerializedName("total_results")

@@ -1,46 +1,77 @@
 package com.emirhankolver.tmdbapp.ui.home.components
 
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.paging.LoadState
+import androidx.paging.compose.LazyPagingItems
 import com.emirhankolver.tmdbapp.data.MovieDetail
-import com.emirhankolver.tmdbapp.data.UiState
 import com.emirhankolver.tmdbapp.ui.components.ErrorCard
 import com.emirhankolver.tmdbapp.ui.components.MovieDetailView
 
 @Composable
 fun MovieDetailList(
-    state: UiState<List<MovieDetail?>>,
+    state: LazyPagingItems<MovieDetail>,
     onClickItem: (MovieDetail?) -> Unit,
-    onTapRetry: () -> Unit,
     header: @Composable (() -> Unit)?,
 ) {
-    when (state) {
-        is UiState.Error -> Column {
+    LazyColumn(horizontalAlignment = Alignment.CenterHorizontally) {
+        item {
             header?.invoke()
-            ErrorCard(subtitle = state.message, onTapRetry = onTapRetry)
+            Box(Modifier.height(8.dp))
         }
 
-        is UiState.Loading -> {
-            LazyColumn {
-                items(10) {
-                    if (it == 0) header?.invoke()
-                    if (it == 0) Box(Modifier.height(8.dp))
-                    MovieDetailPlaceHolder()
-                }
+        if (state.loadState.refresh is LoadState.NotLoading) {
+            items(state.itemCount) {
+                MovieDetailView(movieDetail = state[it], onClickItem)
             }
         }
 
-        is UiState.Success -> {
-            LazyColumn {
-                items(state.data.size) {
-                    if (it == 0) header?.invoke()
-                    if (it == 0) Box(Modifier.height(8.dp))
-                    MovieDetailView(movieDetail = state.data[it], onClickItem)
+        // Handle Loading State
+        state.apply {
+            loadState.append.let { appendState ->
+                when (appendState) {
+                    is LoadState.Loading -> {
+                        items(10) {
+                            MovieDetailPlaceHolder()
+                        }
+                    }
+
+                    is LoadState.Error -> {
+                        val error = appendState.error
+                        item {
+                            ErrorCard(error.message) {
+                                state.retry()
+                            }
+                        }
+                    }
+
+                    else -> Unit // Handle other cases (e.g., Loaded)
+                }
+            }
+
+            loadState.refresh.let { refreshState ->
+                when (refreshState) {
+                    is LoadState.Error -> {
+                        val error = refreshState.error
+                        item {
+                            ErrorCard(error.message) {
+                                state.refresh()
+                            }
+                        }
+                    }
+
+                    is LoadState.Loading -> {
+                        items(10) {
+                            MovieDetailPlaceHolder()
+                        }
+                    }
+
+                    else -> Unit // Handle other cases (e.g., Loaded, Loading)
                 }
             }
         }
