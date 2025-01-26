@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Warning
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardColors
 import androidx.compose.material3.Icon
@@ -55,7 +56,14 @@ fun ErrorCard(subtitle: String? = null, onTapRetry: (() -> Unit)) {
                 textAlign = TextAlign.Center,
                 overflow = TextOverflow.Ellipsis,
             )
-            Button(onTapRetry) {
+            Button(
+                onTapRetry, colors = ButtonColors(
+                    contentColor = MaterialTheme.colorScheme.onError,
+                    containerColor = MaterialTheme.colorScheme.error,
+                    disabledContentColor = MaterialTheme.colorScheme.onError,
+                    disabledContainerColor = MaterialTheme.colorScheme.error,
+                )
+            ) {
                 Text("Retry")
             }
         }
