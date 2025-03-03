@@ -43,7 +43,7 @@ API with smooth UI interactions and solid architectural principles.
    ```
 2. Open in Android Studio
 3. Get a free API key from [TMDB](https://www.themoviedb.org/)
-4. Add your API key in `gradle.properties`:
+4. Add your API key in `local.properties`:
    ```
    TMDB_API_KEY=your_api_key_here
    ```
