@@ -1,5 +1,8 @@
 # 🎬 TMDB Movie App
 
+![1740996343023](https://github.com/user-attachments/assets/3e7ff8a3-3e3c-45c1-a452-239d3270d12e)
+
+
 A modern and feature-rich movie app built with **Jetpack Compose** and **MVVM Clean Architecture**.
 This app showcases popular movies from **[The Movie Database (TMDB)](https://www.themoviedb.org/)**
 API with smooth UI interactions and solid architectural principles.
@@ -19,9 +22,9 @@ API with smooth UI interactions and solid architectural principles.
 
 | Error Handling                                                                              | Shimmer Effects                                                                               | Dark Mode                                                                                  |
 |---------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------|
-| ![error-1](https://github.com/user-attachments/assets/e895bcb4-e8a9-4bc3-99e2-96d8704a2714) | ![shimmer-1](https://github.com/user-attachments/assets/bdb5b864-7c05-4379-b69d-b0fce1bd112d) | ![dark-1](https://github.com/user-attachments/assets/d40685c5-4652-4743-97c3-c0bdebadc68e) |
-| ![error-2](https://github.com/user-attachments/assets/58f9afc3-0267-4f63-bfcb-4060bdf8e721) | ![shimmer-2](https://github.com/user-attachments/assets/bda0b96b-82c3-4675-b9e1-32722e4b10e5) | ![dark-2](https://github.com/user-attachments/assets/37a9c99b-30e0-46d8-89bd-eaa2cc7b73b9) |
-| ![error-3](https://github.com/user-attachments/assets/1a2d80d0-6a71-4fbb-8d50-e507c79e91ef) | ![shimmer-3](https://github.com/user-attachments/assets/d3310306-6fec-45f8-b2b8-c1af5d5390f7) | ![dark-3](https://github.com/user-attachments/assets/5f48238b-7ca7-4d2d-9579-cfdab1d6777a) |
+| ![error-1](https://github.com/user-attachments/assets/62db872b-4629-4627-bbfd-d10c7b32e00b) | ![shimmer-1](https://github.com/user-attachments/assets/cbe20023-cd44-4968-a581-64ffd376c730) | ![dark-1](https://github.com/user-attachments/assets/20468dd6-25bc-455a-aa51-6f582f9d6d5a) |
+| ![error-2](https://github.com/user-attachments/assets/2aac8208-2b6d-4ff6-9198-c2f4fa0954c3) | ![shimmer-2](https://github.com/user-attachments/assets/ff3d7d39-f2a1-4428-909f-0deaceee08b3) | ![dark-2](https://github.com/user-attachments/assets/ff3c21af-57fe-4092-90d0-c924869303b7) |
+| ![error-3](https://github.com/user-attachments/assets/bf36a260-2689-42ea-aa91-ecaca8c807e9) | ![shimmer-3](https://github.com/user-attachments/assets/30fe46bd-000f-4591-aa80-8f161409f5c7) | ![dark-3](https://github.com/user-attachments/assets/a93338b7-e9d1-492e-be70-9a91a51dec48) |
 
 ## 🔧 Tech Stack
 
