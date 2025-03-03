@@ -31,7 +31,6 @@ API with smooth UI interactions and solid architectural principles.
 - **Retrofit** – Networking
 - **Paging 3** – Efficient pagination
 - **Coroutines & Flow** – Asynchronous programming
-- **Room Database** – Local caching
 
 ## 🚀 Installation
 
