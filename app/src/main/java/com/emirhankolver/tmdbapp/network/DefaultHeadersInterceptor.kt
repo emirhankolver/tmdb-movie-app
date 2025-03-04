@@ -9,7 +9,7 @@ class DefaultHeadersInterceptor : Interceptor {
         val request = chain.request()
         val requestBuilder = request.newBuilder()
 
-        requestBuilder.header("Authorization", "Bearer ${BuildConfig.TMDB_API_KEY}")
+        requestBuilder.header("Authorization", "Bearer ${BuildConfig.TMDB_API_TOKEN}")
         requestBuilder.header("Accept", "application/json")
         requestBuilder.method(request.method, request.body)
 

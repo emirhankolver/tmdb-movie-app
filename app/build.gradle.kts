@@ -29,7 +29,7 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField("String", "TMDB_API_KEY", "\"$apiToken\"")
+        buildConfigField("String", "TMDB_API_TOKEN", "\"$apiToken\"")
     }
 
     buildTypes {

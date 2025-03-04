@@ -36,16 +36,16 @@ API with smooth UI interactions and solid architectural principles.
 - **Coroutines & Flow** – Asynchronous programming
 
 ## 🚀 Installation
-
+ 
 1. Clone the repository
    ```sh
    git clone https://github.com/emirhankolver/tmdb-movie-app.git
    ```
 2. Open in Android Studio
-3. Get a free API key from [TMDB](https://www.themoviedb.org/)
-4. Add your API key in `local.properties`:
+3. Get a free API Token from [TMDB](https://www.themoviedb.org/)
+4. Add your API Token in `local.properties`:
    ```
-   TMDB_API_KEY=your_api_key_here
+   TMDB_API_TOKEN=your_api_key_here
    ```
 5. Run the app! 🎉
 
